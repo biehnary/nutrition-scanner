@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,10 +21,10 @@ public class NutritionScannerController {
     public String getByItemName(@RequestParam("foodNm") String foodNm, Model model) {
         System.out.println("제품명 받음: " + foodNm);
 
-        Optional<FoodItem> foodItem = foodSearchService.searchItem(foodNm);
+        List<FoodItem> foodItems = foodSearchService.searchItem(foodNm);
 
         model.addAttribute("foodNm", foodNm);
-        model.addAttribute("foodItem", foodItem.orElse(null));
+        model.addAttribute("foodItems", foodItems);
         return "search-result";
 
     }

@@ -5,7 +5,7 @@ import lombok.Value;
 @Value
 public class NutritionInfo {
 
-    private final Double nutConSrtrQua;
+    private final String nutConSrtrQua;
     private final Double enerc;
     private final Double prot;
     private final Double fatce;
