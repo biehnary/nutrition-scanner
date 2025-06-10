@@ -128,6 +128,7 @@ public class FoodSearchService {
                 );
 
                 FoodItem foodItem = new FoodItem(Optional.empty(), foodName, Optional.of(nutritionInfo));
+                System.out.println("foodItem = " + foodItem);
                 foodItemList.add(foodItem);
             }
             return foodItemList;
