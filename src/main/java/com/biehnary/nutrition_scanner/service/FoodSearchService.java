@@ -42,8 +42,8 @@ public class FoodSearchService {
             //URI 생성
             String urlString = "https://apis.data.go.kr/1471000/FoodNtrCpntDbInfo02/getFoodNtrCpntDbInq02?" +
                     "serviceKey=" + encodedKey +
-                    "&FOOD_NM_KR=" + encodedFood +
-                    "&pageNo=1&numOfRows=3";
+                    "&FOOD_NM_KR=" + encodedFood;
+
 
             URI uri = URI.create(urlString);
             System.out.println("생성된 URI: " + uri.toString());

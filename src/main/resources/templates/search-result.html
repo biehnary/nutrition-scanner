@@ -11,9 +11,28 @@
         <h2>제품 목록</h2>
         <ul>
             <li th:each="foodItem, iterStat : ${foodItems}">
-                <button></button>
+                <button th:onclick="'showDetail(' + ${iterStat.index} + ')'"
+                        th:text="${foodItem.foodNm}">
+                </button>
             </li>
         </ul>
+    </div>
+
+    <!-- 영양 성분 렌더링 -->
+    <div id="nutrition-detail" style="display: none;">
+        <h3 id="selected-product-name">선택된 제품</h3>
+        <table id="nutrition-table" border="1">
+            <tr><td>기준량</td><td id="serving-size">-</td></tr>
+            <tr><td>칼로리</td><td id="calories">-</td></tr>
+            <tr><td>단백질</td><td id="protein">-</td></tr>
+            <tr><td>지방</td><td id="fat">-</td></tr>
+            <tr><td>탄수화물</td><td id="carbs">-</td></tr>
+            <tr><td>당류</td><td id="sugar">-</td></tr>
+            <tr><td>나트륨</td><td id="sodium">-</td></tr>
+            <tr><td>콜레스테롤</td><td id="cholesterol">-</td></tr>
+            <tr><td>트랜스지방</td><td id="trans-fat">-</td></tr>
+
+        </table>
 
     </div>
 
