@@ -127,7 +127,7 @@ public class FoodSearchService {
                         transFatDouble
                 );
 
-                FoodItem foodItem = new FoodItem(Optional.empty(), foodName, Optional.of(nutritionInfo));
+                FoodItem foodItem = new FoodItem("", foodName, nutritionInfo);
                 System.out.println("foodItem = " + foodItem);
                 foodItemList.add(foodItem);
             }

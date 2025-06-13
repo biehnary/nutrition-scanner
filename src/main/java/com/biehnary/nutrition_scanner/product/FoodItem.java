@@ -7,7 +7,7 @@ import java.util.Optional;
 @Value
 public class FoodItem {
 
-    private final Optional<String> code;
+    private final String code;
     private final String foodNm;
-    private final Optional<NutritionInfo> nutritionInfo;
+    private final NutritionInfo nutritionInfo;
 }
