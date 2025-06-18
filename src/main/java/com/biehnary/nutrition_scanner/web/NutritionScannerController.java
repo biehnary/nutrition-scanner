@@ -14,8 +14,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NutritionScannerController {
 
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+
+    // 결과창 컨트롤러
     private final FoodSearchService foodSearchService;
 
+    // 상품 검색 시 결과창
     @GetMapping("/search/name")
     public String getByItemName(@RequestParam("foodNm") String foodNm, Model model) {
         System.out.println("제품명 받음: " + foodNm);

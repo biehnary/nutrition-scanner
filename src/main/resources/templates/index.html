@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutrition Scanner</title>
+    <style>
+        /* CSS 코드 */
+
+
+    </style>
+</head>
+<body>
+    <h1>Nutrition Scanner</h1>
+    <p>제품의 영양성분을 검색해보세요!</p>
+
+    <div class="search-section">
+        <form action="/search/name" method="get">
+            <input name="foodNm" type="text" placeholder="제품명을 입력하세요.">
+            <button type="submit">검색</button>
+        </form>
+
+        <!-- qr 영역 -->
+        <h2>QR코드 검색</h2>
+        <button id="qr-scan-btn">QR 스캔 시작</button>
+        <button id="qr-stop-btn" style="display: none;">QR 스캔 중지</button>
+
+        <!-- QR스캔 화면 (처음엔 숨겨둠) -->
+        <div id="qr-reader" style="width: 300px; height: 200px;
+        display: none; border: 1px solid #ccc; margin: 10px 0;"></div>
+
+        <div id="qr-result" style="margin-top: 10px; color: green;"></div>
+    </div>
+
+    <!-- QR코드 라이브러리 -->
+    <script src="/js/html5-qrcode.min.js"></script>
+    <!-- qr스캔 구현부 js -->
+    <script>
+        let html5QrCode = null;
+
+        // 스캔 시작
+        document.getElementById('qr-scan-btn').onclick = function () {
+            console.log('qr스캔 버튼 작동여부')
+
+            // qr영역 보이기
+            document.getElementById('qr-reader').style.display = 'block';
+            document.getElementById('qr-scan-btn').style.display = 'none';
+            document.getElementById('qr-stop-btn').style.display = 'block';
+
+            html5QrCode = new Html5Qrcode("qr-reader");
+
+            html5QrCode.start(
+                {facingMode: "environment"},
+                {fps: 10, qrbox: 250},
+                qrCodeMessage => {
+                    console.log('QR 스캔 성공', qrCodeMessage);
+                    document.getElementById('qr-reader').textContent = qrCodeMessage;
+
+                    // 성공 즉시 중지.
+                    html5QrCode.stop().then(() => {
+                        document.getElementById('qr-reader').style.display = 'none';
+                        document.getElementById('qr-scan-btn').style.display = 'block';
+                        document.getElementById('qr-stop-btn').style.display = 'none';
+                    })
+                },
+
+                errorMessage => {
+
+                }
+            );
+        };
+
+        // 스캔중지
+        document.getElementById('qr-stop-btn').onclick = function () {
+            console.log('qr 중지 버튼 작동여부')
+
+            if (html5QrCode) {
+                html5QrCode.stop();
+                document.getElementById('qr-reader').style.display = 'none';
+                document.getElementById('qr-scan-btn').style.display = 'block';
+                document.getElementById('qr-stop-btn').style.display = 'none';
+                document.getElementById('qr-result').style.display = '';
+            }
+        };
+    </script>
+</body>
