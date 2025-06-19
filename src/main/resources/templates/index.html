@@ -53,13 +53,8 @@
                 {fps: 10, qrbox: 250},
                 qrCodeMessage => {
                     console.log('QR 스캔 성공', qrCodeMessage);
-                    document.getElementById('qr-reader').textContent = qrCodeMessage;
-
-                    // 성공 즉시 중지.
                     html5QrCode.stop().then(() => {
-                        document.getElementById('qr-reader').style.display = 'none';
-                        document.getElementById('qr-scan-btn').style.display = 'block';
-                        document.getElementById('qr-stop-btn').style.display = 'none';
+                        window.location.href = `/search/name?foodNm=${qrCodeMessage}`;
                     })
                 },
 
