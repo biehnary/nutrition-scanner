@@ -63,6 +63,20 @@ public class FoodSearchService {
             return new ArrayList<>();
         }
     }
+
+    // 파싱 널체크 메서드
+    private Double safeParseDouble(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+
     // XML 응답 파싱
     private List<FoodItem> parseResponse(String xmlResponse) {
 
@@ -105,15 +119,16 @@ public class FoodSearchService {
                 String cholesterol = item.getElementsByTagName("AMT_NUM23").item(0).getTextContent();
                 String transFat = item.getElementsByTagName("AMT_NUM25").item(0).getTextContent();
 
-                // 더블로 변환
-                double caloriesDouble = Double.parseDouble(calories);
-                double proteinDouble = Double.parseDouble(protein);
-                double fatDouble = Double.parseDouble(fat);
-                double carbsDouble = Double.parseDouble(carbs);
-                double sugarDouble = Double.parseDouble(sugar);
-                double sodiumDouble = Double.parseDouble(sodium);
-                double cholesterolDouble = Double.parseDouble(cholesterol);
-                double transFatDouble = Double.parseDouble(transFat);
+                // 더블로 변환 (널처리 해야함. 위 String에서 빈문자 인가가능성 높음)
+
+                Double caloriesDouble = safeParseDouble(calories);
+                Double proteinDouble = safeParseDouble(protein);
+                Double fatDouble = safeParseDouble(fat);
+                Double carbsDouble = safeParseDouble(carbs);
+                Double sugarDouble = safeParseDouble(sugar);
+                Double sodiumDouble = safeParseDouble(sodium);
+                Double cholesterolDouble = safeParseDouble(cholesterol);
+                Double transFatDouble = safeParseDouble(transFat);
 
                 NutritionInfo nutritionInfo = new NutritionInfo(
                         servingSize,

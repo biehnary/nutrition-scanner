@@ -2,8 +2,6 @@ package com.biehnary.nutrition_scanner.product;
 
 import lombok.Value;
 
-import java.util.Optional;
-
 @Value
 public class FoodItem {
 
