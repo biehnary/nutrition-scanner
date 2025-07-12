@@ -55,7 +55,6 @@ public class FoodSearchService {
                     .bodyToMono(String.class)
                     .block();
 
-            System.out.println("API 응답 : " + response);
             return parseResponse(response);
 
         } catch (Exception e) {
@@ -154,6 +153,7 @@ public class FoodSearchService {
 
             return new ArrayList<>();
         }
+
 
     }
 }

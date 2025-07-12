@@ -54,7 +54,6 @@ public class AnalyzeService {
                         null);
 
         // 응답 리턴
-        System.out.println(response.text());
         return response.text();
 
     }
