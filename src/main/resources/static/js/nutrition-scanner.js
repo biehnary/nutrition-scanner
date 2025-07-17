@@ -88,7 +88,7 @@ function callAiAnalysis(item) {
         .then(aiResult => {
             aiCache[cacheKey] = marked.parse(aiResult);
             // 결과 캐싱
-            // 로딩 숨김 + 결과 표시
+            // 로딩 숨김 + 결과 표시자
             document.getElementById('ai-loading').style.display = 'none';
             document.getElementById('ai-result').innerHTML = marked.parse(aiResult);
         })
